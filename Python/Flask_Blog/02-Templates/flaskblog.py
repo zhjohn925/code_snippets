@@ -21,6 +21,7 @@ posts = [
 @app.route("/home")
 def home():
     # pass variable (posts) into html template
+    # use jinja2 in html ie. {% %}
     return render_template('home.html', posts=posts)
 
 
