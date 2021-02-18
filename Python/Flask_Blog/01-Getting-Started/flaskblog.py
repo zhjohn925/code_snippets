@@ -14,6 +14,9 @@ def home():
 def about():
     return "<h1>About Page</h1>"
 
-
+# __name__ is __main__ only when run it standalone, then the condition is True, 
+# the functions will be called.
+# otherwise, __name__ is the module name when imported by another python, then 
+# the condition is False, the functions will not be called.
 if __name__ == '__main__':
     app.run(debug=True)
