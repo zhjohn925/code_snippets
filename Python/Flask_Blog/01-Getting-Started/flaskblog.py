@@ -5,7 +5,8 @@ from flask import Flask
 # module name
 app = Flask(__name__)
 
-# decorator adds the stuff into the existing functions
+# decorator adds the additional functionality into the existing functions
+# "/" is root page of the web site. 
 @app.route("/")
 @app.route("/home")
 def home():
@@ -21,6 +22,6 @@ def about():
 # otherwise, __name__ is the module name when imported by other python scripts, then 
 # the condition is False, the functions in if block will not be called.
 if __name__ == '__main__':
-    # run in debug mode. That means, anything changes, no need to restart server, 
-    # the web browser can pick up after refresh. 
+    # run in debug mode. That means, anything changes, no need to restart web server, 
+    # the web browser can pick up after reload. 
     app.run(debug=True)
