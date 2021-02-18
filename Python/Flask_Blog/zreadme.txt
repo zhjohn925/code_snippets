@@ -17,6 +17,7 @@ $ export FLASK_DEBUG=1  #Enable debugger. anything changes in the code, no need 
 $ flask run 
 Running on http://127.0.0.1:5000/
 
-2. python flaskblog.py
+2. Run python script directly 
+$ python flaskblog.py
 
 
