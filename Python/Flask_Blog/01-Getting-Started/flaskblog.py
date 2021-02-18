@@ -1,7 +1,9 @@
 from flask import Flask
+
+#__name__ is name of this module
 app = Flask(__name__)
 
-
+# decorator adds the stuff into the existing functions
 @app.route("/")
 @app.route("/home")
 def home():
