@@ -21,6 +21,6 @@ def about():
 # otherwise, __name__ is the module name when imported by other python scripts, then 
 # the condition is False, the functions in if block will not be called.
 if __name__ == '__main__':
-    # run in debug mode. That means, anything changes, 
-    # web browser can pick up after refresh. 
+    # run in debug mode. That means, anything changes, no need to restart server, 
+    # the web browser can pick up after refresh. 
     app.run(debug=True)
