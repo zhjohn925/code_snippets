@@ -5,14 +5,16 @@ from flask import Flask
 # module name
 app = Flask(__name__)
 
-# decorator adds the additional functionality into the existing functions
-# "/" is root page of the web site. 
+# decorator adds the additional functionality into the existing functions.
+# route to http://localhost:5000/      ("/" is root page of the web site). 
+# route to http://localhost:5000/home 
 @app.route("/")
 @app.route("/home")
 def home():
     return "<h1>Home Page</h1>"
 
-
+# route to http://localhost:5000/about
+# if below is not defined, "404 error" occurs due to the page not found.
 @app.route("/about")
 def about():
     return "<h1>About Page</h1>"
