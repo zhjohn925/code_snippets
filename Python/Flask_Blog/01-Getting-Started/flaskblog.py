@@ -1,6 +1,8 @@
 from flask import Flask
 
-#__name__ is name of this module
+# __name__ is __main__ if we run this script directly. 
+# if it is imported by somewhere else, __name__ is 
+# module name
 app = Flask(__name__)
 
 # decorator adds the stuff into the existing functions
@@ -14,9 +16,11 @@ def home():
 def about():
     return "<h1>About Page</h1>"
 
-# __name__ is __main__ only when run it standalone, then the condition is True, 
-# the functions will be called.
-# otherwise, __name__ is the module name when imported by another python, then 
-# the condition is False, the functions will not be called.
+# __name__ is __main__ only when run it directly, then the condition is True, 
+# the functions in if block will be called.
+# otherwise, __name__ is the module name when imported by other python scripts, then 
+# the condition is False, the functions in if block will not be called.
 if __name__ == '__main__':
+    # run in debug mode. That means, anything changes, 
+    # web browser can pick up after refresh. 
     app.run(debug=True)
