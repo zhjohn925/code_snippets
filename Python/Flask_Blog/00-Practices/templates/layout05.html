@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title> Flask Blog - {{title}} </title>
+    {% else %}
+        <title> Flask Blog</title>
+    {% endif %}  
+</head>
+<body>
+    <!-- The child templates inherit this parent template -->
+    <!-- Here defines block to be placeholder for child templates to overwrite-->
+    <!-- content is name of block, can be a different name -->
+    {% block content %}{% endblock %} 
+</body>
+</html>
