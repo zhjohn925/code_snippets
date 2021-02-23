@@ -1,6 +1,9 @@
 from datetime import datetime
 from flaskblog import db
 
+### !!! Generate database tables structure first 
+### !!! by following zreadme_package.txt
+
 # defines User table structure in database
 class User(db.Model) :
     # primary_key specifies unique id

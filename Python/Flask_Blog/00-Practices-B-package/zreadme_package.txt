@@ -26,3 +26,15 @@ D:.
             register.html
 
 
+#############################################
+# Generate database tables structure
+#############################################
+
+$ python
+>>> from flaskblog import db
+>>> from flaskblog.models import User, Post
+>>> db.create_all()       #creates database structures. site.db is generated.
+>>> User.query.all()
+[]
+>>> exit()
+
