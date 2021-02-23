@@ -1,7 +1,8 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm
 from flaskblog.models import User, Post
+from flask_login import login_user, current_user, logout_user, login_required
 
 # forms.py in flaskblog package
 # models.py in flaskblog package
@@ -35,6 +36,8 @@ def about():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RegistrationForm()
     # once submit successfully, flash message shows in the placehold in layout.html
     # flash message is one time only, it disappear after refresh web browser
@@ -51,12 +54,30 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == 'admin@blog.com' and form.password.data=='password' :
-            flash('You have been logged in', 'success')
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data) :
+            login_user(user, remember=form.remember.data)
+            # request.args is dictionary type
+            next_page = request.args.get('next')
             # 'home' is function of home() above
-            return redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         else :
             flash('Login failed. Please check email and password.', 'danger')
     return render_template('login13.html', title='Login', form=form)
+
+
+@app.route("/logout")
+def logout() :
+    logout_user()
+    return redirect(url_for('home'))
+
+# login_required decorator makes sure to access the page only
+# when the user log in
+@app.route("/account")
+@login_required
+def account() :
+    return render_template('account.html', title='Account')
