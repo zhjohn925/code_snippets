@@ -30,11 +30,18 @@ Edit a single post
   http://localhost:5000/post/1
   http://localhost:5000/post/1/update
 
-- add "Update" button in  post.html  
-- Add "Delete" button in post.html with bootstrap modal
+- add "Update" button in  post01.html  
+- Add "Delete" button in post01.html with bootstrap modal
   https://getbootstrap.com/docs/4.0/components/modal/
   Look for "Live demo"
   Change "exampleModal" to "deleteModal"
+- Edit Model block in post02.html for delete post
+  "Delete" button route to delete_post(), and pass post_id
+  "Delete" sends "POST" request to delete the post
+- Add delete_post route in route06.py
+
+
+
   
 
 

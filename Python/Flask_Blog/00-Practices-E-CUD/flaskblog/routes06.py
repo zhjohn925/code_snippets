@@ -129,7 +129,7 @@ def new_post() :
 def post(post_id) :
     # find the post or give page not found 404 error
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    return render_template('post02.html', title=post.title, post=post)
 
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
@@ -148,3 +148,15 @@ def update_post(post_id) :
         form.title.data = post.title
         form.content.data = post.content
     return render_template('create_post.html', title='Update Post', form=form, legend="Update Post")
+
+# "Delete" button in Modal sends POST request to delete the post
+@app.route("/post/<int:post_id>/delete", methods=['POST'])
+@login_required
+def delete_post(post_id) :
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('home'))
