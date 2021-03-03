@@ -1,0 +1,33 @@
+{% extends "layout11_flash.html" %}
+<!-- Copy home.html, and modify -->
+{% block content %}
+    <h1 class="mb-3">Posts by {{ user.username }} ({{ posts.total }})</h1>
+    {% for post in posts.items %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                    <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                </div>
+                <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
+            </div>
+        </article>
+    {% endfor %}
+    <!-- posts.iter_pages() can generate None between, replace None as ... -->
+    <!-- left_edge: number of pages on the left edge -->
+    <!-- right_edge: number of pages on the right edge -->
+    <!-- left_current: number of pages on left of current page -->
+    <!-- right_current: number of pages on right of current page, including the current page -->
+    {% for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <a href="{{ url_for('user_posts', username=user.username, page=page_num) }}" class="btn btn-info mb-4">{{page_num}}</a>
+            {% else %}
+                <a href="{{ url_for('user_posts', username=user.username, page=page_num) }}" class="btn btn-outline-info mb-4">{{page_num}}</a>
+            {% endif %}
+        {% else %}
+            ... 
+        {% endif %}
+    {% endfor %}
+{% endblock %}
