@@ -23,11 +23,15 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'     # which is login() in routes.py
 login_manager.login_message_category = 'info'  #add bootstrap class to make nice view for flash message
 
-# Use gmail server
+# Config gmail server to send instruction how to reset password
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-# environment variables
+# environment variables 
+# Need to set these variables on Windows to your gmail user and password
+# ie.
+# > set EMAIL_USER xyz@gmail.com    (export in linux)
+# > set EMAIL_PASS password_to_xyz  (export in linux)
 app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 mail = Mail(app)

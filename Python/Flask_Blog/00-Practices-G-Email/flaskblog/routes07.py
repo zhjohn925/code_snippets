@@ -178,6 +178,9 @@ def user_posts(username) :
     return render_template('user_posts.html', posts=posts, user=user)
 
 
+# Send email with the link to reset password
+# The URL link is specified by url_for(), route to reset_token()
+# _external=True tells Flask that it should generate an absolute URL, and not a relative URL. 
 def send_reset_email(user) :
     token = user.get_reset_token()
     msg = Message('Password Reset Request', sender='noreply@demo.com', 
@@ -190,6 +193,8 @@ If you did not make this request then simply ignore this email and no changes wi
     mail.send(msg)
 
 
+# route the form to send instruction email to request password reset
+# when forgot the password
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request() :
     if current_user.is_authenticated:
@@ -203,6 +208,7 @@ def reset_request() :
     return render_template('reset_request.html', title='Reset Password', form=form)
 
 
+# route with the form to set new password (the URL link is from email)
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token) :
     if current_user.is_authenticated:
