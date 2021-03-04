@@ -1,5 +1,7 @@
 email: C@demo.com
 password: password
+email: zhjohn925@hotmail.com
+password: 1234
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 In order to send email from gmail, need to
