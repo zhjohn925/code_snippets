@@ -15,6 +15,12 @@ $ git clone \
   --sparse \
   https://github.com/zhjohn925/code_snippets \
 ;
-cd test-git-partial-clone
-git sparse-checkout init --cone
-git sparse-checkout set Python/Flask_Blog
+
+#cd test-git-partial-clone
+
+#git sparse-checkout init --cone
+
+git sparse-checkout set Python/Flask_Blog     # Flask tutorial
+
+git sparse-checkout set Django_Blog           # Django tutorial
+
