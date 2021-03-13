@@ -3,6 +3,7 @@
     - makemigrations just detects the changes, and prepare Django to update the database.
               but does not actually run these changes yet.
        $ django_project> python manage.py makemigrations
+              No changes detected
 
     - in order to apply migration, need to run migrate
        $ django_project> python manage.py migrate
