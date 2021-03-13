@@ -6,6 +6,9 @@ $ django-admin    #list django commands
 
 $ django-admin startproject django_project
 
+# Note: single project directory can holds multiple apps.
+#       Also, you can take single app add to multiple projects
+
 $ cd django_project
 
 $ python manage.py runserver
