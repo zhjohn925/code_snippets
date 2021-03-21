@@ -17,9 +17,13 @@
    -- Create User model (present as class)
    -- Create Post model (present as class)
 
-6. play around db operations as in zreadme_db.txt
+6. A relationship is established between two database tables when one table 
+    uses a foreign key that references the primary key of another table. 
+    This is the basic concept behind the term relational database.
 
-4. Test website
+7. play around db operations as in zreadme_db.txt
+
+8. Test website
    $ python flaskblog.py  
         http://127.0.0.1:5000/login
 

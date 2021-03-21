@@ -8,6 +8,13 @@ $ python
 >>> db.session.add(user_2)
 >>> db.session.commit()      #write into database
 
+#############################################################
+# You can do User.query.all() after db.session.add(), but
+# the Users returns from a temporary db file. 
+# if you skip commit(), User.query.all() returns empty list 
+# after restart the python 
+#############################################################
+
 #### some query examples:
 >>> User.query.all()
 [User('Corey','C@demo.com','default.jpg'), User('JohnDoe','jd@demo.com','default.jpg')]
@@ -52,10 +59,10 @@ Post('Blog 1','2021-02-22 23:40:11.581184')
 User('Corey','C@demo.com','default.jpg')
 
 ##### refresh the database
->>> db.drop_all()
+>>> db.drop_all()       # after drop_all(), you can not do User.query.all()  
 >>> db.create_all()     # create database table structures
->>> User.query.all()    # database becomes empty
-[]
+>>> User.query.all()    # You can do it after create_all(),
+[]                      # but database becomes empty since nothing is added yet.
 >>> Post.query.all()
 []
 

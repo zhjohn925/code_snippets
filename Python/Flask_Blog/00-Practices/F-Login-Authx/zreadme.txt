@@ -1,4 +1,7 @@
 - update __init__.py by adding bcrypt, used to hash the password
+          $ pip3 install flask-bcrypt
+      look zreadme_bcrypt for details
+      
 - update register() in routes.py to add user into the database, 
   and redirect to login page.
   To verify the user being added:

@@ -1,11 +1,17 @@
 from datetime import datetime
-from flaskblog import db
+from flaskblog import db, login_manager
+from flask_login import UserMixin
 
 ### !!! Generate database tables structure first 
 ### !!! by following zreadme_package.txt
 
+@login_manager.user_loader
+def load_user(user_id) :
+    return User.query.get(int(user_id))
+
+
 # defines User table structure in database
-class User(db.Model) :
+class User(db.Model, UserMixin) :
     # primary_key specifies unique id
     id = db.Column(db.Integer, primary_key=True)
     # max 20 characters, unique, and required
