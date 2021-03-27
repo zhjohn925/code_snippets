@@ -1,20 +1,7 @@
-{% extends "layout11_flash.html" %}
+{% extends "layout.html" %}
 {% block content %}
     <div class="content-section">
-        <div class="media">
-            <img src="{{ image_file }}" alt="" class="rounded-circle account-img">
-            <div class="media-body">
-                <h2 class="account-heading">{{ current_user.username }}</h2>
-                <p class="text-secondary">{{ current_user.email }}</p>
-            </div>
-        </div>
-
-        <!-- FORM HERE Copy registration form and modify -->
-        <!-- The enctype attribute specifies how the form-data should be 
-            encoded when submitting it to the server. -->
-        <!-- multipart/form-data: No characters are encoded. This value is 
-            required when you are using forms that have a file upload control -->
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post">
             <!-- add some security -->
             {{ form.hidden_tag() }}
             <!--The <fieldset> tag is used to group related elements in a form.
@@ -22,7 +9,7 @@
                 The <legend> tag defines a caption for the <fieldset> element.
             -->           
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Account Info</legend>
+                <legend class="border-bottom mb-4">Join Today</legend>
                 <div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
                     {% if form.username.errors %}
@@ -50,20 +37,42 @@
                     {% endif %}   
                 </div>
                 <div class="form-group">
-                    {{ form.picture.label() }}
-                    {{ form.picture(class="form-control-file") }}
-                    {% if form.picture.errors %}
-                        {% for error in form.picture.errors %}
-                            <span class="text-danger">{{ error }}</span>
-                            </br>
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}   
+                </div>                
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
                         {% endfor %}
-                    {% endif %}
+                    </div>
+                {% else %} 
+                    {{ form.confirm_password(class="form-control form-control-lg") }}
+                {% endif %}   
                 </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class='btn btn-outline-info') }}
             </div>
         </form>
-
+    </div>
+    <!-- url_for() passed in the name of function login() -->
+    <!-- text-muted to fade the text -->
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already have an account ? <a href="{{ url_for('login') }}" class="ml-2">Sign in</a>
+        </small>
     </div>
 {% endblock content %}
