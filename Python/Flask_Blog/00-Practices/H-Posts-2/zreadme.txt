@@ -22,6 +22,9 @@
       <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
 
 6. add user profile image in home.html template
+      <img src="{{ url_for('static', filename='profile_pics/'+post.author.image_file) }}" alt="" class="rounded-circle article-img">
+
+
  
 
 
