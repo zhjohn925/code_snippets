@@ -1,4 +1,5 @@
 https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH
+https://rahul1999.medium.com/deploy-a-flask-app-with-a-sqlite-database-on-heroku-22b5402c5c6
 https://roytuts.com/how-to-deploy-python-flask-mysql-based-application-in-heroku-cloud/
 
 - Install flask (try to import flask under python to verify the installation)
